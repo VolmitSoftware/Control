@@ -18,9 +18,64 @@
 
 package com.volmit.control;
 
-import org.bukkit.entity.Cow;
+import art.arcane.amulet.logging.LogListener;
+import com.volmit.control.api.ControlAPI;
+import com.volmit.control.api.ControlKernel;
+import com.volmit.control.api.ControlModule;
+import com.volmit.control.api.service.ControlService;
+import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class Control extends JavaPlugin {
+import java.util.ArrayList;
+import java.util.List;
 
+public class Control extends JavaPlugin implements ControlKernel, ControlModule, LogListener {
+    private List<ControlService> services;
+
+    public void onEnable()
+    {
+        ControlAPI.registerKernel(this);
+       services = new ArrayList<>();
+       LogListener.listener.set(this);
+    }
+
+    public void onDisable()
+    {
+        services.forEach(HandlerList::unregisterAll);
+        services.forEach(ControlService::stop);
+        services.clear();
+        HandlerList.unregisterAll(this);
+    }
+
+    @Override
+    public void registerService(ControlService service) {
+        services.add(service);
+    }
+
+    private CommandSender console()
+    {
+        return getServer().getConsoleSender();
+    }
+
+    @Override
+    public void i(String tag, Object f) {
+        console().sendMessage(ChatColor.WHITE + "[I/" + tag + "]: " + ChatColor.GRAY + f);
+    }
+
+    @Override
+    public void f(String tag, Object f) {
+        console().sendMessage(ChatColor.RED + "[F/" + tag + "]: " + ChatColor.RED + f);
+    }
+
+    @Override
+    public void w(String tag, Object f) {
+        console().sendMessage(ChatColor.GOLD + "[W/" + tag + "]: " + ChatColor.WHITE + f);
+    }
+
+    @Override
+    public void d(String tag, Object f) {
+        console().sendMessage(ChatColor.LIGHT_PURPLE + "[D/" + tag + "]: " + ChatColor.GRAY + f);
+    }
 }
