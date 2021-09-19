@@ -36,7 +36,7 @@ import java.util.List;
 public class Control extends JavaPlugin implements ControlKernel, ControlModule, LogListener {
     private List<ControlService> services;
     @Inject
-    private ContextService contextService;
+    public ContextService contextService;
 
     public void onEnable() {
         ControlAPI.registerKernel(this);
