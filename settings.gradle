@@ -5,3 +5,5 @@ sourceControl {
         producesModule("com.volmit:ChumBukkit")
     }
 }
+include 'api'
+
