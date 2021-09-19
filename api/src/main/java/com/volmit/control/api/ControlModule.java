@@ -21,51 +21,41 @@ package com.volmit.control.api;
 import com.volmit.control.api.service.ControlService;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
-import org.bukkit.entity.Phantom;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
 public interface ControlModule {
-    default Plugin plugin()
-    {
+    default Plugin plugin() {
         return Bukkit.getPluginManager().getPlugin("Control");
     }
 
-    default void register()
-    {
+    default void register() {
         register(this);
     }
 
-    default String name()
-    {
+    default String name() {
         return getClass().getSimpleName().replaceAll("\\QService\\E", "");
     }
 
-    default Server server()
-    {
+    default Server server() {
         return plugin().getServer();
     }
 
-    default PluginManager pluginManager()
-    {
+    default PluginManager pluginManager() {
         return plugin().getServer().getPluginManager();
     }
 
-    default void registerListener(Listener l)
-    {
+    default void registerListener(Listener l) {
         pluginManager().registerEvents(l, plugin());
     }
 
-    default void register(Object registerable)
-    {
-        if(registerable instanceof ControlService s)
-        {
+    default void register(Object registerable) {
+        if (registerable instanceof ControlService s) {
             ControlAPI.kernel().registerService(s);
         }
 
-        if(registerable instanceof Listener l)
-        {
+        if (registerable instanceof Listener l) {
             registerListener(l);
         }
     }

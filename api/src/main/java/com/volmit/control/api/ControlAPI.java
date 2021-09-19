@@ -18,19 +18,14 @@
 
 package com.volmit.control.api;
 
-import com.volmit.control.api.service.ControlService;
-
-public class ControlAPI
-{
+public class ControlAPI {
     private static ControlKernel kernel;
 
-    public static void registerKernel(ControlKernel kernel)
-    {
+    public static void registerKernel(ControlKernel kernel) {
         ControlAPI.kernel = kernel;
     }
 
-    public static ControlKernel kernel()
-    {
+    public static ControlKernel kernel() {
         return kernel;
     }
 }

@@ -21,10 +21,8 @@ package com.volmit.control.api.service;
 import com.volmit.control.api.ControlModule;
 import org.bukkit.event.Listener;
 
-public abstract class ControlService implements ControlModule, Listener
-{
-    public ControlService()
-    {
+public abstract class ControlService implements ControlModule, Listener {
+    public ControlService() {
         register();
         start();
     }

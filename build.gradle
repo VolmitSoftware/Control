@@ -8,7 +8,23 @@ plugins {
 group 'com.volmit.control'
 version '0.1.0-Alpha'
 def apiVersion = '1.17'
-def name = getRootProject().getName() // Defined in settings.gradle
+def name = getRootProject().getName() /*
+ * Control is a Core/Essential Plugin for Minecraft Bukkit Servers
+ * Copyright (c) 2021 Arcane Arts (Volmit Software)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */ // Defined in settings.gradle
 def main = 'com.volmit.control.Control'
 
 // ADD YOURSELF AS A NEW LINE IF YOU WANT YOUR OWN BUILD TASK GENERATED

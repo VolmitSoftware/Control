@@ -25,25 +25,21 @@ import org.bukkit.entity.Player;
 import static art.arcane.amulet.MagicalSugar.*;
 
 public class CommandGameMode extends ControlCommandCluster {
-    public CommandGameMode()
-    {
+    public CommandGameMode() {
         alias("gamemode", "gm");
     }
 
-    public void gamemode(GameMode gamemode)
-    {
+    public void gamemode(GameMode gamemode) {
         player().setGameMode(gamemode);
     }
 
-    public void gamemode(Player player, GameMode gamemode)
-    {
+    public void gamemode(Player player, GameMode gamemode) {
         player.setGameMode(gamemode);
     }
 
-    public void gamemode()
-    {
+    public void gamemode() {
         sender().sendMessage("Your Current Game Mode is "
-                + (player().getGameMode().name() lc).capitalizeWords()
+                + (player().getGameMode().name()lc).capitalizeWords()
                 + " (ID: " + player().getGameMode().ordinal() + ")");
     }
 }

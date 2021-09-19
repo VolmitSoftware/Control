@@ -23,26 +23,28 @@ import com.volmit.control.api.ControlAPI;
 import com.volmit.control.api.ControlKernel;
 import com.volmit.control.api.ControlModule;
 import com.volmit.control.api.service.ControlService;
+import com.volmit.control.system.service.ContextService;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Control extends JavaPlugin implements ControlKernel, ControlModule, LogListener {
     private List<ControlService> services;
+    @Inject
+    private ContextService contextService;
 
-    public void onEnable()
-    {
+    public void onEnable() {
         ControlAPI.registerKernel(this);
-       services = new ArrayList<>();
-       LogListener.listener.set(this);
+        services = new ArrayList<>();
+        LogListener.listener.set(this);
     }
 
-    public void onDisable()
-    {
+    public void onDisable() {
         services.forEach(HandlerList::unregisterAll);
         services.forEach(ControlService::stop);
         services.clear();
@@ -51,7 +53,7 @@ public class Control extends JavaPlugin implements ControlKernel, ControlModule,
 
     @Override
     public CommandSender contextSender() {
-        return null; // TODO:
+        return contextService.sender();
     }
 
     @Override
@@ -59,8 +61,7 @@ public class Control extends JavaPlugin implements ControlKernel, ControlModule,
         services.add(service);
     }
 
-    private CommandSender console()
-    {
+    private CommandSender console() {
         return getServer().getConsoleSender();
     }
 

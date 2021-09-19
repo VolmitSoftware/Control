@@ -18,7 +18,21 @@
 
 package com.volmit.control.system.service;
 
-public class ContextService
-{
+import com.volmit.control.api.service.ControlService;
+import org.bukkit.command.CommandSender;
 
+public class ContextService extends ControlService {
+    @Override
+    public void start() {
+
+    }
+
+    @Override
+    public void stop() {
+
+    }
+
+    public CommandSender sender() {
+        return null; // TODO: GO
+    }
 }

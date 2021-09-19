@@ -19,9 +19,7 @@
 package com.volmit.control.api.command;
 
 import com.volmit.control.api.ControlAPI;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.command.CommandSender;
@@ -34,49 +32,40 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class ControlCommandCluster
-{
+public class ControlCommandCluster {
     private final Map<String, Set<String>> aliasMap = new HashMap<>();
 
-    public CommandSender sender()
-    {
+    public CommandSender sender() {
         return ControlAPI.kernel().contextSender();
     }
 
-    public Player player()
-    {
+    public Player player() {
         return sender() instanceof Player p ? p : null;
     }
 
-    public boolean isPlayer()
-    {
+    public boolean isPlayer() {
         return sender() instanceof Player;
     }
 
-    public World world()
-    {
+    public World world() {
         return isPlayer() ? player().getWorld() : null;
     }
 
-    public Location location()
-    {
+    public Location location() {
         return isPlayer() ? player().getLocation() : null;
     }
 
-    public Location crosshair()
-    {
+    public Location crosshair() {
         Block m = player().getTargetBlockExact(256);
 
-        if(m == null)
-        {
+        if (m == null) {
             return null;
         }
 
         return isPlayer() ? m.getLocation() : null;
     }
 
-    public void alias(String name, String...aliases)
-    {
+    public void alias(String name, String... aliases) {
         aliasMap.computeIfAbsent(name.toLowerCase(), (f) -> new HashSet<>())
                 .addAll(Arrays.stream(aliases).collect(Collectors.toSet()));
     }
