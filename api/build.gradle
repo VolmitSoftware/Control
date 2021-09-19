@@ -6,12 +6,19 @@ group 'com.volmit.control'
 version '1.0.0'
 
 repositories {
+    maven {
+        url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+        content {
+            includeGroup 'org.spigotmc'
+        }
+    }
     mavenCentral()
 }
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation 'org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT'
 }
 
 test {
