@@ -16,7 +16,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.volmit.control.core;
+package com.volmit.control.system.service;
 
-public class C {
+public class ContextService
+{
+
 }
