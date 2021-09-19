@@ -19,7 +19,10 @@
 package com.volmit.control.api;
 
 import com.volmit.control.api.service.ControlService;
+import org.bukkit.command.CommandSender;
 
 public interface ControlKernel {
     void registerService(ControlService service);
+
+    CommandSender contextSender();
 }

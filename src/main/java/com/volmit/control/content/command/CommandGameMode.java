@@ -20,6 +20,9 @@ package com.volmit.control.content.command;
 
 import com.volmit.control.api.command.ControlCommandCluster;
 import org.bukkit.GameMode;
+import org.bukkit.entity.Player;
+
+import static art.arcane.amulet.MagicalSugar.*;
 
 public class CommandGameMode extends ControlCommandCluster {
     public CommandGameMode()
@@ -29,6 +32,18 @@ public class CommandGameMode extends ControlCommandCluster {
 
     public void gamemode(GameMode gamemode)
     {
+        player().setGameMode(gamemode);
+    }
 
+    public void gamemode(Player player, GameMode gamemode)
+    {
+        player.setGameMode(gamemode);
+    }
+
+    public void gamemode()
+    {
+        sender().sendMessage("Your Current Game Mode is "
+                + (player().getGameMode().name() lc).capitalizeWords()
+                + " (ID: " + player().getGameMode().ordinal() + ")");
     }
 }

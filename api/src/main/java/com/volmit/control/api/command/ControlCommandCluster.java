@@ -18,6 +18,15 @@
 
 package com.volmit.control.api.command;
 
+import com.volmit.control.api.ControlAPI;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.block.Block;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -31,7 +40,39 @@ public class ControlCommandCluster
 
     public CommandSender sender()
     {
-        return
+        return ControlAPI.kernel().contextSender();
+    }
+
+    public Player player()
+    {
+        return sender() instanceof Player p ? p : null;
+    }
+
+    public boolean isPlayer()
+    {
+        return sender() instanceof Player;
+    }
+
+    public World world()
+    {
+        return isPlayer() ? player().getWorld() : null;
+    }
+
+    public Location location()
+    {
+        return isPlayer() ? player().getLocation() : null;
+    }
+
+    public Location crosshair()
+    {
+        Block m = player().getTargetBlockExact(256);
+
+        if(m == null)
+        {
+            return null;
+        }
+
+        return isPlayer() ? m.getLocation() : null;
     }
 
     public void alias(String name, String...aliases)

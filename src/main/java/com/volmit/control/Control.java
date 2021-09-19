@@ -50,6 +50,11 @@ public class Control extends JavaPlugin implements ControlKernel, ControlModule,
     }
 
     @Override
+    public CommandSender contextSender() {
+        return null; // TODO:
+    }
+
+    @Override
     public void registerService(ControlService service) {
         services.add(service);
     }
