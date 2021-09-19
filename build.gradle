@@ -178,6 +178,7 @@ dependencies {
     annotationProcessor 'com.google.dagger:dagger-compiler:2.38.1'
 
     // Shaded
+    implementation project(':api')
     implementation 'com.google.dagger:dagger:2.38.1'
     implementation 'com.dfsek:Paralithic:0.4.0'
     implementation 'io.papermc:paperlib:1.0.5'
